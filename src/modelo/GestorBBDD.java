@@ -64,6 +64,37 @@ public class GestorBBDD extends Conector{
 		
 	}
 	
-	public void 
+	public ArrayList<Habitacion> getHotel(int id_hotel) {
+		
+		ArrayList<Habitacion> habitaciones = new ArrayList<Habitacion>();
+		String sql = "SELECT * FROM habitaciones WHERE id_hotel = ?";
+		
+		try {
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, id_hotel);
+			ResultSet rs = pst.executeQuery();
+			
+			while(rs.next()) {
+			Habitacion habitacion = new Habitacion();
+			habitacion.setId(rs.getInt("id"));
+			habitacion.setId_hotel(rs.getInt("id_hotel"));
+			habitacion.setNumero(rs.getString("numero"));
+			habitacion.setDescripcion(rs.getString("descripcion"));
+			habitacion.setPrecio(rs.getDouble("precio"));
+			
+			habitaciones.add(habitacion);
+			}
+			
+			return habitaciones;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return null;
+		
+	}
 	
 }

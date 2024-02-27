@@ -31,4 +31,14 @@ public class Formulario {
 		
 	}
 	
+	public static int getId_hotel(Scanner scan) {
+		
+		System.out.println("Introduce el id del hotel");
+		int id_hotel = Integer.parseInt(scan.nextLine());
+				
+		return id_hotel;
+		
+	}
+	
+	
 }

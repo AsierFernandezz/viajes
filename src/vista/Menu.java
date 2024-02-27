@@ -6,6 +6,7 @@ public class Menu {
 	
 	//Principal
 	public static final int CLIENTES = 1;
+	public static final int HABITACIONES = 2;
 	
 	
 	//Clientes
@@ -25,6 +26,7 @@ public class Menu {
 	public static final int INSERTAR_HABITACIONES = 2;
 	public static final int ELIMINAR_HABITACIONES = 3;
 	public static final int MODIFICAR_HABITACIONES = 4;
+	public static final int VER_HABITACIONES_HOTEL = 5;
 	
 	//Reserva
 	public static final int VER_TODOS_RESERVAS = 1;
@@ -34,7 +36,9 @@ public class Menu {
 	
 	public static void menuPrincipal() {
 		System.out.println("--Menu--");
+		System.out.println(SALIR + "- Salir");
 		System.out.println(CLIENTES + "- Clientes");
+		System.out.println(HABITACIONES + "- Habitaciones");
 	}
 	
 	public static void menuClientes() {
@@ -44,6 +48,12 @@ public class Menu {
 		System.out.println(ELIMINAR_CLIENTES + "- Eliminar clientes");
 		System.out.println(MODIFICAR_CLIENTES + "Modificar clientes");
 	}
+	
+	public static void menuHabitaciones() {
+		System.out.println("--MENU--");
+		System.out.println(VER_HABITACIONES_HOTEL + "- Ver todas las habitaciones de un hotel");
+	}
+	
 }
 
 	

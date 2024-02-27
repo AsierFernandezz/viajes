@@ -43,6 +43,23 @@ public class GestorGeneral {
 				}
 				break;
 	
+			case Menu.HABITACIONES:
+				
+				Menu.menuHabitaciones();
+				opcion = Integer.parseInt(scan.nextLine());
+				
+				switch (opcion) {
+				case Menu.VER_HABITACIONES_HOTEL:
+					gestorbbdd.conectar();
+					int id_hotel = Formulario.getId_hotel(scan);
+					ArrayList<Habitacion> habitaciones = gestorbbdd.getHotel(id_hotel);
+					gestorbbdd.cerrar();
+					Visor.mostrarHabitaciones(habitaciones);
+					break;
+
+				default:
+					break;
+				}
 			default:
 				break;
 			}
