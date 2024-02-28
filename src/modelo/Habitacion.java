@@ -39,6 +39,7 @@ public class Habitacion {
 		this.precio = precio;
 	}
 	
+	
 	@Override
 	public String toString() {
 		return "Habitacion [id=" + id + ", id_hotel=" + id_hotel + ", numero=" + numero + ", descripcion=" + descripcion

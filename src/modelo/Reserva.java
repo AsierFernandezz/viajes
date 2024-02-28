@@ -5,8 +5,8 @@ import java.util.Date;
 public class Reserva {
 
 	private int id;
-	private int id_habitacion;
-	private String dni;
+	private Habitacion habitacion;
+	private Cliente cliente;
 	private Date desde;
 	private Date hasta;
 	
@@ -17,17 +17,17 @@ public class Reserva {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getId_habitacion() {
-		return id_habitacion;
+	public Habitacion gethabitacion() {
+		return habitacion;
 	}
-	public void setId_habitacion(int id_habitacion) {
-		this.id_habitacion = id_habitacion;
+	public void sethabitacion(Habitacion habitacion) {
+		this.habitacion = habitacion;
 	}
-	public String getDni() {
-		return dni;
+	public Cliente getCliente() {
+		return cliente;
 	}
-	public void setDni(String dni) {
-		this.dni = dni;
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 	public Date getDesde() {
 		return desde;
@@ -42,11 +42,25 @@ public class Reserva {
 		this.hasta = hasta;
 	}
 	
+	public Reserva() {
+		
+	}
+	
+	public Reserva(int id, Habitacion habitacion, Cliente cliente, Date desde, Date hasta) {
+		super();
+		this.id = id;
+		this.habitacion = habitacion;
+		this.cliente = cliente;
+		this.desde = desde;
+		this.hasta = hasta;
+	}
 	@Override
 	public String toString() {
-		return "Reserva [id=" + id + ", id_habitacion=" + id_habitacion + ", dni=" + dni + ", desde=" + desde
+		return "Reserva [id=" + id + ", habitacion=" + habitacion + ", cliente=" + cliente + ", desde=" + desde
 				+ ", hasta=" + hasta + "]";
 	}
+	
+
 	
 	
 	
