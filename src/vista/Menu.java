@@ -53,11 +53,13 @@ public class Menu {
 	
 	public static void menuHabitaciones() {
 		System.out.println("--MENU--");
+		System.out.println(ELIMINAR_HABITACIONES + "- Eliminar habitaciones");
 		System.out.println(VER_HABITACIONES_HOTEL + "- Ver todas las habitaciones de un hotel");
 	}
 	
 	public static void menuReservas() {
 		System.out.println("--MENU--");
+		System.out.println(VER_TODOS_RESERVAS + "- Ver todas las reservas");
 		System.out.println(REALIZAR_RESERVAS + "- Realiza una reserva");
 	}
 	

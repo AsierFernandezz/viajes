@@ -44,6 +44,44 @@ public class GestorBBDD extends Conector{
 		
 	}
 	
+	public ArrayList<Reserva> verReservas(){
+		
+		ArrayList<Reserva> reservas = new ArrayList<Reserva>();
+		String sql = "SELECT * FROM reservas";
+		
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(sql);
+			
+			while(rs.next()) {
+				Reserva reserva = new Reserva();
+				reserva.setId(rs.getInt("id"));
+				
+				Habitacion habitacionTemp = new Habitacion();
+				habitacionTemp.setId(rs.getInt("id_habitacion"));
+				reserva.sethabitacion(habitacionTemp);
+				
+				Cliente clienteTemp = new Cliente();
+				clienteTemp.setDni(rs.getString("dni"));
+				reserva.setCliente(clienteTemp);
+				
+				reserva.setDesde(rs.getDate("desde"));
+				reserva.setHasta(rs.getDate("hasta"));
+				
+				reservas.add(reserva);
+				
+				return reservas;
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+		
+	}
+	
 	public void insertarCliente(Cliente cliente) {
 		
 		String sql = "INSERT INTO clientes (dni,nombre,apellidos,direccion,localidad) VALUES (?,?,?,?,?)";
@@ -117,13 +155,30 @@ public class GestorBBDD extends Conector{
 		
 	}
 	
-	public Hotel getIdHotelXNombre(String nombre_hotel) {
+	public void eliminarHabitacion(int idHabitacion) {
+		
+		String sql = "DELETE FROM habitaciones WHERE id = ?";
+		
+		try {
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, idHabitacion);
+			
+			pst.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public Hotel getIdHotelXNombre(String nombreHotel) {
 		
 		String sql = "SELECT * FROM hoteles WHERE nombre = ?";
 		
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setString(1, nombre_hotel);
+			pst.setString(1, nombreHotel);
 			ResultSet rs = pst.executeQuery();
 			
 			rs.next();
@@ -169,6 +224,14 @@ public class GestorBBDD extends Conector{
 		
 		
 		return null;
+		
+	}
+	
+	public Habitacion editarHabitacion(Habitacion habitacion) {
+		
+		String sql = "UPDATE ";
+		
+		return habitacion;
 		
 	}
 	

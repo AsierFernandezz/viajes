@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import modelo.Cliente;
 import modelo.Habitacion;
+import modelo.Reserva;
 
 public class Visor {
 
@@ -23,4 +24,10 @@ public class Visor {
 		System.out.println(cliente);
 	}
 	
+	
+	public static void mostrarReservas(ArrayList<Reserva> reservas) {
+		for (Reserva reserva : reservas) {
+			System.out.println(reserva);
+		}
+	}
 }

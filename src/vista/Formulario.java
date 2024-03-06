@@ -49,8 +49,6 @@ public class Formulario {
 		habitacionTemporal.setId(idHabitacion);
 		reserva.sethabitacion(habitacionTemporal);
 		
-//		System.out.println("Introduce el dni");
-//		reserva.getCliente().setDni(scan.nextLine());
 		
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -73,18 +71,18 @@ public class Formulario {
 	public static int idHabitacion(Scanner scan) {
 		
 		System.out.println("Introduce el id de la habitacion");
-		int id_habitacion = Integer.parseInt(scan.nextLine());
+		int idHabitacion = Integer.parseInt(scan.nextLine());
 		
-		return id_habitacion;
+		return idHabitacion;
 		
 	}
 	
 	public static String getNombreHotel(Scanner scan) {
 		
-		System.out.println("Introduce el nombre del hotel donde se desea alojar");
-		String nombre_hotel = scan.nextLine();
+		System.out.println("Introduce el nombre del hotel");
+		String nombreHotel = scan.nextLine();
 				
-		return nombre_hotel;
+		return nombreHotel;
 		
 	}
 	

@@ -51,13 +51,29 @@ public class GestorGeneral {
 				switch (opcion) {
 				case Menu.VER_HABITACIONES_HOTEL:
 					gestorbbdd.conectar();
-					String nombre_hotel = Formulario.getNombreHotel(scan);
-					Hotel hotel = gestorbbdd.getIdHotelXNombre(nombre_hotel);
+					String nombreHotel = Formulario.getNombreHotel(scan);
+					Hotel hotel = gestorbbdd.getIdHotelXNombre(nombreHotel);
 					ArrayList<Habitacion> habitaciones = gestorbbdd.getHotel(hotel);
 					gestorbbdd.cerrar();
 					Visor.mostrarHabitaciones(habitaciones);
 					break;
 
+				case Menu.ELIMINAR_HABITACIONES:
+					gestorbbdd.conectar();
+					
+					nombreHotel = Formulario.getNombreHotel(scan);
+					hotel = gestorbbdd.getIdHotelXNombre(nombreHotel);
+					
+					habitaciones = gestorbbdd.getHotel(hotel);
+					Visor.mostrarHabitaciones(habitaciones);
+					
+					int idHabitacion = Formulario.idHabitacion(scan);
+					gestorbbdd.eliminarHabitacion(idHabitacion);
+					
+					gestorbbdd.cerrar();
+					
+					break;
+					
 				default:
 					break;
 				}
@@ -68,15 +84,20 @@ public class GestorGeneral {
 				opcion = Integer.parseInt(scan.nextLine());
 				
 				switch (opcion) {
+				case Menu.VER_TODOS_RESERVAS:
+					gestorbbdd.conectar();
+					ArrayList<Reserva> reservas = gestorbbdd.verReservas();
+					gestorbbdd.cerrar();
+					Visor.mostrarReservas(reservas);
+					break;
+				
 				case Menu.REALIZAR_RESERVAS:
 					
 					gestorbbdd.conectar();
 					//pedir dni 
 					String dniCliente = Formulario.getDni(scan);
 					Cliente cliente = gestorbbdd.getClienteXDni(dniCliente);
-					/*
-					 * reserva.setCliente(cliente);
-					 */
+					
 					//mostrar cliente 
 					Visor.mostrarCliente(cliente);
 					
