@@ -12,6 +12,10 @@ public class GestorGeneral {
 	public void run() {
 		
 		GestorBBDD gestorbbdd = new GestorBBDD();
+		ClienteModelo cm = new ClienteModelo();
+		ReservaModelo rm = new ReservaModelo();
+		HabitacionModelo hm = new HabitacionModelo();
+		HotelModelo hom = new HotelModelo();
 		
 		int opcion;
 		Scanner scan = new Scanner(System.in);
@@ -29,15 +33,35 @@ public class GestorGeneral {
 				switch (opcion) {
 				case Menu.VER_TODOS_CLIENTES:
 					gestorbbdd.conectar();
-					ArrayList<Cliente> clientes = gestorbbdd.VerTodosClientes();
+					ArrayList<Cliente> clientes = cm.VerTodosClientes();
 					gestorbbdd.cerrar();
 					Visor.mostrarClientes(clientes);
 					break;
 
 				case Menu.INSERTAR_CLIENTES:
 					gestorbbdd.conectar();
-					gestorbbdd.insertarCliente(Formulario.introducirDatosCliente(scan));
+					cm.insertarCliente(Formulario.introducirDatosCliente(scan));
 					gestorbbdd.cerrar();
+					break;
+				
+				case Menu.VISUALIZAR_CLIENTE:
+					gestorbbdd.conectar();
+					Cliente cliente = cm.getClienteXDni(Formulario.getDni(scan));
+					gestorbbdd.cerrar();
+					break;
+					
+				case Menu.MODIFICAR_CLIENTES:
+					gestorbbdd.conectar();
+					String DNI= Formulario.getDni(scan);
+					cliente = cm.getClienteXDni(DNI);
+					cm.modificarCliente(DNI, Formulario.introducirDatosCliente(scan));
+					break;
+					
+				case Menu.ELIMINAR_CLIENTES:
+					gestorbbdd.conectar();
+					cm.borrarCliente(Formulario.getDni(scan));
+					gestorbbdd.cerrar();
+					break;
 				default:
 					break;
 				}
@@ -52,8 +76,8 @@ public class GestorGeneral {
 				case Menu.VER_HABITACIONES_HOTEL:
 					gestorbbdd.conectar();
 					String nombreHotel = Formulario.getNombreHotel(scan);
-					Hotel hotel = gestorbbdd.getIdHotelXNombre(nombreHotel);
-					ArrayList<Habitacion> habitaciones = gestorbbdd.getHotel(hotel);
+					Hotel hotel = hom.getHotel(nombreHotel);
+					ArrayList<Habitacion> habitaciones = hom.getHoteles(hotel);
 					gestorbbdd.cerrar();
 					Visor.mostrarHabitaciones(habitaciones);
 					break;
@@ -62,13 +86,13 @@ public class GestorGeneral {
 					gestorbbdd.conectar();
 					
 					nombreHotel = Formulario.getNombreHotel(scan);
-					hotel = gestorbbdd.getIdHotelXNombre(nombreHotel);
+					hotel = hom.getHotel(nombreHotel);
 					
-					habitaciones = gestorbbdd.getHotel(hotel);
+					habitaciones = hom.getHoteles(hotel);
 					Visor.mostrarHabitaciones(habitaciones);
 					
 					int idHabitacion = Formulario.idHabitacion(scan);
-					gestorbbdd.eliminarHabitacion(idHabitacion);
+					hm.eliminarHabitacion(idHabitacion);
 					
 					gestorbbdd.cerrar();
 					
@@ -86,7 +110,7 @@ public class GestorGeneral {
 				switch (opcion) {
 				case Menu.VER_TODOS_RESERVAS:
 					gestorbbdd.conectar();
-					ArrayList<Reserva> reservas = gestorbbdd.verReservas();
+					ArrayList<Reserva> reservas = rm.verReservas();
 					gestorbbdd.cerrar();
 					Visor.mostrarReservas(reservas);
 					break;
@@ -96,28 +120,38 @@ public class GestorGeneral {
 					gestorbbdd.conectar();
 					//pedir dni 
 					String dniCliente = Formulario.getDni(scan);
-					Cliente cliente = gestorbbdd.getClienteXDni(dniCliente);
+					Cliente cliente = cm.getClienteXDni(dniCliente);
 					
 					//mostrar cliente 
 					Visor.mostrarCliente(cliente);
 					
 					//pedir nombre del hotel donde se desea alojar
 					String nombreHotel = Formulario.getNombreHotel(scan);
-					Hotel hotel = gestorbbdd.getIdHotelXNombre(nombreHotel);
+					Hotel hotel = hom.getHotel(nombreHotel);
 					
-					ArrayList<Habitacion> habitaciones = gestorbbdd.getHotel(hotel);
+					ArrayList<Habitacion> habitaciones = hom.getHoteles(hotel);
 					
 					Visor.mostrarHabitaciones(habitaciones);
 					
 					//pedir datos para realizar la reserva
 					Reserva reserva = Formulario.introducirDatosReserva(scan);
 					reserva.setCliente(cliente);
-					gestorbbdd.realizarReserva(reserva);
+					rm.realizarReserva(reserva);
 					
 					gestorbbdd.cerrar();
 					
 					break;
 
+				case Menu.MOSTRAR_RESERVA_CLIENTE:
+					gestorbbdd.conectar();
+					
+					dniCliente = Formulario.getDni(scan);
+					cliente = cm.getClienteXDni(dniCliente);
+					cm.getClienteXDni(dniCliente);
+					
+					gestorbbdd.cerrar();
+					break;
+					
 				default:
 					break;
 				}

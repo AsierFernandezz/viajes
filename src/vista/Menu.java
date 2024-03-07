@@ -13,8 +13,9 @@ public class Menu {
 	//Clientes
 	public static final int VER_TODOS_CLIENTES = 1;
 	public static final int INSERTAR_CLIENTES = 2;
-	public static final int ELIMINAR_CLIENTES = 3;
-	public static final int MODIFICAR_CLIENTES = 4;
+	public static final int VISUALIZAR_CLIENTE = 3;
+	public static final int ELIMINAR_CLIENTES = 4;
+	public static final int MODIFICAR_CLIENTES = 5;
 	
 	//Hotel
 	public static final int VER_TODOS_HOTELES = 1;
@@ -34,6 +35,7 @@ public class Menu {
 	public static final int REALIZAR_RESERVAS = 2;
 	public static final int ELIMINAR_RESERVAS = 3;
 	public static final int MODIFICAR_RESERVAS = 4;
+	public static final int MOSTRAR_RESERVA_CLIENTE = 5;
 	
 	public static void menuPrincipal() {
 		System.out.println("--Menu--");
@@ -61,6 +63,7 @@ public class Menu {
 		System.out.println("--MENU--");
 		System.out.println(VER_TODOS_RESERVAS + "- Ver todas las reservas");
 		System.out.println(REALIZAR_RESERVAS + "- Realiza una reserva");
+		System.out.println(MOSTRAR_RESERVA_CLIENTE + "- Muestra las reservas de los clientes");
 	}
 	
 }
