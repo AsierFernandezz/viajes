@@ -93,4 +93,21 @@ public class HabitacionModelo extends Conector{
 		}
 		return h;
 	}
+	
+	public void eliminarHabitacion(int idHabitacion) {
+		
+		String sql = "DELETE FROM habitaciones WHERE id = ?";
+		
+		try {
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, idHabitacion);
+			
+			pst.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 }

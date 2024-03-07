@@ -60,6 +60,40 @@ public class HotelModelo extends Conector{
 		}
 		return h;
 	}
+	
+	public ArrayList<Habitacion> getHoteles(Hotel hotel) {
+		
+		ArrayList<Habitacion> habitaciones = new ArrayList<Habitacion>();
+		String sql = "SELECT * FROM habitaciones WHERE id_hotel = ?";
+		
+		try {
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, hotel.getId());
+			ResultSet rs = pst.executeQuery();
+			
+			while(rs.next()) {
+			Habitacion habitacion = new Habitacion();
+			habitacion.setId(rs.getInt("id"));
+			habitacion.setId_hotel(hotel);
+			habitacion.setNumero(rs.getInt("numero"));
+			habitacion.setDescripcion(rs.getString("descripcion"));
+			habitacion.setPrecio(rs.getDouble("precio"));
+			
+			habitaciones.add(habitacion);
+			}
+			
+			return habitaciones;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return null;
+		
+	}
+	
 	private void buscarHotelenBD(Hotel h, PreparedStatement pst) throws SQLException {
 		ResultSet rs = pst.executeQuery();
 		rs.next();
@@ -130,4 +164,6 @@ public class HotelModelo extends Conector{
 			return false;
 		}
 	}
+	
+	
 }

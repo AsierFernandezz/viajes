@@ -77,7 +77,7 @@ public class GestorGeneral {
 					gestorbbdd.conectar();
 					String nombreHotel = Formulario.getNombreHotel(scan);
 					Hotel hotel = hom.getHotel(nombreHotel);
-					ArrayList<Habitacion> habitaciones = gestorbbdd.getHotel(hotel);
+					ArrayList<Habitacion> habitaciones = hom.getHoteles(hotel);
 					gestorbbdd.cerrar();
 					Visor.mostrarHabitaciones(habitaciones);
 					break;
@@ -86,13 +86,13 @@ public class GestorGeneral {
 					gestorbbdd.conectar();
 					
 					nombreHotel = Formulario.getNombreHotel(scan);
-					hotel = gestorbbdd.getIdHotelXNombre(nombreHotel);
+					hotel = hom.getHotel(nombreHotel);
 					
-					habitaciones = gestorbbdd.getHotel(hotel);
+					habitaciones = hom.getHoteles(hotel);
 					Visor.mostrarHabitaciones(habitaciones);
 					
 					int idHabitacion = Formulario.idHabitacion(scan);
-					gestorbbdd.eliminarHabitacion(idHabitacion);
+					hm.eliminarHabitacion(idHabitacion);
 					
 					gestorbbdd.cerrar();
 					
@@ -127,9 +127,9 @@ public class GestorGeneral {
 					
 					//pedir nombre del hotel donde se desea alojar
 					String nombreHotel = Formulario.getNombreHotel(scan);
-					Hotel hotel = gestorbbdd.getIdHotelXNombre(nombreHotel);
+					Hotel hotel = hom.getHotel(nombreHotel);
 					
-					ArrayList<Habitacion> habitaciones = gestorbbdd.getHotel(hotel);
+					ArrayList<Habitacion> habitaciones = hom.getHoteles(hotel);
 					
 					Visor.mostrarHabitaciones(habitaciones);
 					
