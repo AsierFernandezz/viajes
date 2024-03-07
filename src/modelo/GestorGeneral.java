@@ -118,6 +118,16 @@ public class GestorGeneral {
 					
 					break;
 
+				case Menu.MOSTRAR_RESERVA_CLIENTE:
+					gestorbbdd.conectar();
+					
+					dniCliente = Formulario.getDni(scan);
+					cliente = gestorbbdd.getClienteXDni(dniCliente);
+					gestorbbdd.getClienteXDni(dniCliente);
+					
+					gestorbbdd.cerrar();
+					break;
+					
 				default:
 					break;
 				}

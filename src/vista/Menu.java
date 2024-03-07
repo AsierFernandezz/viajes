@@ -34,6 +34,7 @@ public class Menu {
 	public static final int REALIZAR_RESERVAS = 2;
 	public static final int ELIMINAR_RESERVAS = 3;
 	public static final int MODIFICAR_RESERVAS = 4;
+	public static final int MOSTRAR_RESERVA_CLIENTE = 5;
 	
 	public static void menuPrincipal() {
 		System.out.println("--Menu--");
@@ -61,6 +62,7 @@ public class Menu {
 		System.out.println("--MENU--");
 		System.out.println(VER_TODOS_RESERVAS + "- Ver todas las reservas");
 		System.out.println(REALIZAR_RESERVAS + "- Realiza una reserva");
+		System.out.println(MOSTRAR_RESERVA_CLIENTE + "- Muestra las reservas de los clientes");
 	}
 	
 }
