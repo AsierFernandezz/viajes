@@ -13,8 +13,9 @@ public class Menu {
 	//Clientes
 	public static final int VER_TODOS_CLIENTES = 1;
 	public static final int INSERTAR_CLIENTES = 2;
-	public static final int ELIMINAR_CLIENTES = 3;
-	public static final int MODIFICAR_CLIENTES = 4;
+	public static final int VISUALIZAR_CLIENTE = 3;
+	public static final int ELIMINAR_CLIENTES = 4;
+	public static final int MODIFICAR_CLIENTES = 5;
 	
 	//Hotel
 	public static final int VER_TODOS_HOTELES = 1;

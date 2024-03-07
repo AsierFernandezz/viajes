@@ -12,6 +12,8 @@ public class GestorGeneral {
 	public void run() {
 		
 		GestorBBDD gestorbbdd = new GestorBBDD();
+		ClienteModelo cm = new ClienteModelo();
+		ReservaModelo rm = new ReservaModelo();
 		
 		int opcion;
 		Scanner scan = new Scanner(System.in);
@@ -29,7 +31,7 @@ public class GestorGeneral {
 				switch (opcion) {
 				case Menu.VER_TODOS_CLIENTES:
 					gestorbbdd.conectar();
-					ArrayList<Cliente> clientes = gestorbbdd.VerTodosClientes();
+					ArrayList<Cliente> clientes = cm.VerTodosClientes();
 					gestorbbdd.cerrar();
 					Visor.mostrarClientes(clientes);
 					break;
@@ -38,6 +40,26 @@ public class GestorGeneral {
 					gestorbbdd.conectar();
 					gestorbbdd.insertarCliente(Formulario.introducirDatosCliente(scan));
 					gestorbbdd.cerrar();
+					break;
+				
+				case Menu.VISUALIZAR_CLIENTE:
+					gestorbbdd.conectar();
+					Cliente cliente = cm.getClienteXDni(Formulario.getDni(scan));
+					gestorbbdd.cerrar();
+					break;
+					
+				case Menu.MODIFICAR_CLIENTES:
+					gestorbbdd.conectar();
+					String DNI= Formulario.getDni(scan);
+					cliente = cm.getClienteXDni(DNI);
+					cm.modificarCliente(DNI, Formulario.introducirDatosCliente(scan));
+					break;
+					
+				case Menu.ELIMINAR_CLIENTES:
+					gestorbbdd.conectar();
+					cm.borrarCliente(Formulario.getDni(scan));
+					gestorbbdd.cerrar();
+					break;
 				default:
 					break;
 				}
@@ -86,7 +108,7 @@ public class GestorGeneral {
 				switch (opcion) {
 				case Menu.VER_TODOS_RESERVAS:
 					gestorbbdd.conectar();
-					ArrayList<Reserva> reservas = gestorbbdd.verReservas();
+					ArrayList<Reserva> reservas = rm.verReservas();
 					gestorbbdd.cerrar();
 					Visor.mostrarReservas(reservas);
 					break;
@@ -96,7 +118,7 @@ public class GestorGeneral {
 					gestorbbdd.conectar();
 					//pedir dni 
 					String dniCliente = Formulario.getDni(scan);
-					Cliente cliente = gestorbbdd.getClienteXDni(dniCliente);
+					Cliente cliente = cm.getClienteXDni(dniCliente);
 					
 					//mostrar cliente 
 					Visor.mostrarCliente(cliente);
@@ -122,8 +144,8 @@ public class GestorGeneral {
 					gestorbbdd.conectar();
 					
 					dniCliente = Formulario.getDni(scan);
-					cliente = gestorbbdd.getClienteXDni(dniCliente);
-					gestorbbdd.getClienteXDni(dniCliente);
+					cliente = cm.getClienteXDni(dniCliente);
+					cm.getClienteXDni(dniCliente);
 					
 					gestorbbdd.cerrar();
 					break;
