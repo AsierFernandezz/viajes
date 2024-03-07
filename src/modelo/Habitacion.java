@@ -3,8 +3,8 @@ package modelo;
 public class Habitacion {
 
 	private int id;
-	private int id_hotel;
-	private String numero;
+	private Hotel id_hotel;
+	private int numero;
 	private String descripcion;
 	private double precio;
 	
@@ -14,17 +14,17 @@ public class Habitacion {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getId_hotel() {
+	public Hotel getId_hotel() {
 		return id_hotel;
 	}
-	public void setId_hotel(int id_hotel) {
+	public void setId_hotel(Hotel id_hotel) {
 		this.id_hotel = id_hotel;
 	}
-	public String getNumero() {
+	public int getNumero() {
 		return numero;
 	}
-	public void setNumero(String numero) {
-		this.numero = numero;
+	public void setNumero(int i) {
+		this.numero = i;
 	}
 	public String getDescripcion() {
 		return descripcion;

@@ -14,6 +14,8 @@ public class GestorGeneral {
 		GestorBBDD gestorbbdd = new GestorBBDD();
 		ClienteModelo cm = new ClienteModelo();
 		ReservaModelo rm = new ReservaModelo();
+		HabitacionModelo hm = new HabitacionModelo();
+		HotelModelo hom = new HotelModelo();
 		
 		int opcion;
 		Scanner scan = new Scanner(System.in);
@@ -38,7 +40,7 @@ public class GestorGeneral {
 
 				case Menu.INSERTAR_CLIENTES:
 					gestorbbdd.conectar();
-					gestorbbdd.insertarCliente(Formulario.introducirDatosCliente(scan));
+					cm.insertarCliente(Formulario.introducirDatosCliente(scan));
 					gestorbbdd.cerrar();
 					break;
 				
@@ -74,7 +76,7 @@ public class GestorGeneral {
 				case Menu.VER_HABITACIONES_HOTEL:
 					gestorbbdd.conectar();
 					String nombreHotel = Formulario.getNombreHotel(scan);
-					Hotel hotel = gestorbbdd.getIdHotelXNombre(nombreHotel);
+					Hotel hotel = hom.getHotel(nombreHotel);
 					ArrayList<Habitacion> habitaciones = gestorbbdd.getHotel(hotel);
 					gestorbbdd.cerrar();
 					Visor.mostrarHabitaciones(habitaciones);
@@ -134,7 +136,7 @@ public class GestorGeneral {
 					//pedir datos para realizar la reserva
 					Reserva reserva = Formulario.introducirDatosReserva(scan);
 					reserva.setCliente(cliente);
-					gestorbbdd.realizarReserva(reserva);
+					rm.realizarReserva(reserva);
 					
 					gestorbbdd.cerrar();
 					
